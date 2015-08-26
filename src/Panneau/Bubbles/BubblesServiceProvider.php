@@ -53,17 +53,12 @@ class BubblesServiceProvider extends ServiceProvider
         $app = $this->app;
         Panneau::macro('registerBubbleType', function($class, $key = null) use ($app)
         {
-            if(!$key)
-            {
-                $key = with(is_object($class) ? $class:app($class))->type;
-            }
-            
-            return $this->bind('bubble.'.$key, $class);
+            return $this->register('bubble', $class, $key);
         });
         
-        Panneau::macro('bubbleType', function($key) use ($app)
+        Panneau::macro('bubbleType', function($key, $args = []) use ($app)
         {
-            return class_exists($key) || $app->bound($key) ? app($key):app('panneau.bubble.'.$key);
+            return $this->make('bubble', $key, $args);
         });
     }
 }
