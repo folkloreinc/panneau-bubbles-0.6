@@ -1,9 +1,9 @@
 <?php namespace Panneau\Bubbles;
 
 use Panneau\Panneau;
-use Panneau\Support\ExtensionServiceProvider;
+use Panneau\Support\ServiceProvider;
 
-class BubblesServiceProvider extends ExtensionServiceProvider
+class BubblesServiceProvider extends ServiceProvider
 {
     protected $resources = array(
         'bubbles' => '\Panneau\Bubbles\BubblesResource'
