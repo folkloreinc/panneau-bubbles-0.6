@@ -9,15 +9,28 @@ class BubblesServiceProvider extends ExtensionServiceProvider
         'bubbles' => '\Panneau\Bubbles\BubblesResource'
     );
     
+    protected $assets = array(
+        'bubbles_js' => 'vendor/panneau-bubbles/js/bubbles.js',
+        'bubbles_css' => 'vendor/panneau-bubbles/css/bubbles.css'
+    );
+    
     public function boot()
     {
         parent::boot();
         
-        $migrationsPath = __DIR__.'/../../resources/migrations/';
+        $migrationsPath = __DIR__.'/../../migrations/';
+        $translationsPath = __DIR__.'/../../resources/lang/';
+        $assetsPath = __DIR__.'/../../resources/assets/build/';
+        
+        $this->loadTranslationsFrom($translationsPath, 'panneau-bubbles');
 
         $this->publishes([
             $migrationsPath => database_path('migrations')
         ], 'migrations');
+        
+        $this->publishes([
+            $assetsPath => public_path('vendor/panneau-bubbles')
+        ], 'assets');
         
         $this->registerBubbleTypes();
     }
