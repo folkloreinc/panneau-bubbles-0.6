@@ -13,10 +13,11 @@ use Cviebrock\EloquentTaggable\Contracts\Taggable;
 use Cviebrock\EloquentTaggable\Traits\Taggable as TaggableTrait;
 
 use Panneau\Support\Traits\HasFields;
+use Panneau\Support\Traits\HasFieldsSnippet;
 
 class Bubble extends Model implements Taggable
 {
-    use HasFields, TaggableTrait, AudibleTrait, FilmableTrait, LinkableTrait, MetadatableTrait, PicturableTrait, WritableTrait;
+    use HasFields, HasFieldsSnippet, TaggableTrait, AudibleTrait, FilmableTrait, LinkableTrait, MetadatableTrait, PicturableTrait, WritableTrait;
     
     protected $table = 'bubbles';
     
@@ -34,11 +35,13 @@ class Bubble extends Model implements Taggable
         'settings',
         'published',
         'condition',
-        'fields'
+        'fields',
+        'snippet'
     ];
     
     protected $appends = [
-        'fields'
+        'fields',
+        'snippet'
     ];
     
     protected $casts = [
