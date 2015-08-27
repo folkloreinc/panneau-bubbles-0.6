@@ -1,4 +1,4 @@
-<?php namespace Panneau\Bubbles\Type;
+<?php namespace Panneau\Bubbles\Types;
 
 use Panneau\Bubbles\Support\BubbleType;
 

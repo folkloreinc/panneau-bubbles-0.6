@@ -21,8 +21,11 @@ class BubblesServiceProvider extends ServiceProvider
         $migrationsPath = __DIR__.'/../../migrations/';
         $translationsPath = __DIR__.'/../../resources/lang/';
         $assetsPath = __DIR__.'/../../resources/assets/build/';
+        $configPath = __DIR__.'/../../config/bubbles.php';
         
         $this->loadTranslationsFrom($translationsPath, 'panneau-bubbles');
+        
+        $this->mergeConfigFrom($configPath, 'panneau.bubbles');
 
         $this->publishes([
             $migrationsPath => database_path('migrations')
@@ -32,13 +35,29 @@ class BubblesServiceProvider extends ServiceProvider
             $assetsPath => public_path('vendor/panneau-bubbles')
         ], 'assets');
         
+        $this->publishes([
+            $configPath => config_path('panneau/bubbles.php'),
+        ], 'config');
+        
         $this->registerBubbleTypes();
     }
     
     protected function registerBubbleTypes()
     {
         $panneau = app('panneau');
-        $panneau->registerBubbleType('Panneau\Bubbles\Support\BubbleType');
+        
+        $types = config('panneau.bubbles.types');
+        foreach($types as $key => $type)
+        {
+            if(is_numeric($key))
+            {
+                $panneau->registerBubbleType($type);
+            }
+            else
+            {
+                $panneau->registerBubbleType($type, $key);
+            }
+        }
     }
     
     public function register()
