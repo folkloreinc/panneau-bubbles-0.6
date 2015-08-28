@@ -55,9 +55,17 @@ class Bubble extends Model implements Taggable
     /**
      * Model fields
      */
-    protected function getFieldsManager()
+    protected function getBubbleType()
     {
         $bubbleType = app('panneau')->bubbleType($this->type);
         return $bubbleType->withModel($this);
+    }
+    protected function getFieldsCollection()
+    {
+        return $this->getBubbleType()->fields;
+    }
+    protected function getFieldsSnippet()
+    {
+       return $this->getBubbleType()->snippet;
     }
 }
