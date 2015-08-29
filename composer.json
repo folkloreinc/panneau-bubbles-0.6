@@ -1,0 +1,28 @@
+{
+	"name": "panneau/bubbles",
+    "description": "A bubbles management addon for Panneau",
+    "keywords": ["panneau", "cms", "dashboard", "bubbles", "content management", "admin", "administration", "media"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/support": "5.1.*",
+		"panneau/core": "dev-master",
+        "cviebrock/eloquent-taggable": "dev-master",
+        "cviebrock/eloquent-sluggable": "dev-master",
+        "folklore/eloquent-mediatheque": "5.1.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "Panneau\\Bubbles\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    }
+}
