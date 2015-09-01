@@ -9,7 +9,6 @@
         "illuminate/support": "5.1.*",
 		"panneau/panneau": "dev-master",
         "cviebrock/eloquent-taggable": "dev-master",
-        "cviebrock/eloquent-sluggable": "dev-master",
         "folklore/eloquent-mediatheque": "5.1.*"
     },
     "require-dev": {
