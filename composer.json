@@ -1,5 +1,5 @@
 {
-	"name": "panneau/bubbles",
+	"name": "folklore/panneau-bubbles",
     "description": "A bubbles management addon for Panneau",
     "keywords": ["panneau", "cms", "dashboard", "bubbles", "content management", "admin", "administration", "media"],
     "license": "MIT",
@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/support": "5.1.*",
-		"panneau/core": "dev-master",
+		"folklore/panneau": "dev-master",
         "cviebrock/eloquent-taggable": "dev-master",
         "cviebrock/eloquent-sluggable": "dev-master",
         "folklore/eloquent-mediatheque": "5.1.*"
