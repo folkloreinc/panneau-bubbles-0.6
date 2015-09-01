@@ -9,13 +9,12 @@ use Folklore\EloquentMediatheque\Traits\MetadatableTrait;
 use Folklore\EloquentMediatheque\Traits\PicturableTrait;
 use Folklore\EloquentMediatheque\Traits\WritableTrait;
 
-use Cviebrock\EloquentTaggable\Contracts\Taggable;
-use Cviebrock\EloquentTaggable\Traits\Taggable as TaggableTrait;
+use Conner\Tagging\TaggableTrait;
 
 use Panneau\Support\Traits\HasFields;
 use Panneau\Support\Traits\HasFieldsSnippet;
 
-class Bubble extends Model implements Taggable
+class Bubble extends Model
 {
     use HasFields, HasFieldsSnippet, TaggableTrait, AudibleTrait, FilmableTrait, LinkableTrait, MetadatableTrait, PicturableTrait, WritableTrait;
     

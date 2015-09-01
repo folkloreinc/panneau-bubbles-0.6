@@ -8,7 +8,7 @@
         "php": ">=5.5.9",
         "illuminate/support": "5.1.*",
 		"panneau/panneau": "dev-master",
-        "cviebrock/eloquent-taggable": "dev-master",
+        "rtconner/laravel-tagging": "~1.1",
         "folklore/eloquent-mediatheque": "5.1.*"
     },
     "require-dev": {
