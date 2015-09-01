@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/support": "5.1.*",
+        "illuminate/support": "5.1.*",
 		"panneau/panneau": "dev-master",
         "cviebrock/eloquent-taggable": "dev-master",
         "cviebrock/eloquent-sluggable": "dev-master",
