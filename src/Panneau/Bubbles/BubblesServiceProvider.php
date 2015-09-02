@@ -10,8 +10,7 @@ class BubblesServiceProvider extends ServiceProvider
     );
     
     protected $assets = array(
-        'bubbles_js' => 'vendor/panneau-bubbles/js/bubbles.js',
-        'bubbles_css' => 'vendor/panneau-bubbles/css/bubbles.css'
+        'bubbles_js' => 'vendor/panneau-bubbles/js/bubbles.js'
     );
     
     public function boot()
