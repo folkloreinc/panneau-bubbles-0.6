@@ -11,6 +11,11 @@ class TestCase extends BaseTestCase {
         
         
     }
+    
+    protected function testBubbleFields()
+    {
+        
+    }
 
     protected function getPackageProviders($app)
     {
