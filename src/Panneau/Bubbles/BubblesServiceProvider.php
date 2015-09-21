@@ -78,5 +78,10 @@ class BubblesServiceProvider extends ServiceProvider
         {
             return $this->make('bubble', $key, $args);
         });
+        
+        Panneau::macro('bubbleTypes', function()
+        {
+            return $this->getRegister('bubble');
+        });
     }
 }
