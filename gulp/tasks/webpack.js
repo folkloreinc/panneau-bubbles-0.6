@@ -15,8 +15,8 @@ module.exports = function(gulp, config)
     
     return function()
     {
-        gulp.src(config.jsSrcPath+'/main.js')
-            .pipe(webpack(defaultConfig))
-            .pipe(gulp.dest(config.jsTmpPath));
+        return gulp.src(config.jsSrcPath+'/main.js')
+                    .pipe(webpack(defaultConfig))
+                    .pipe(gulp.dest(config.jsTmpPath));
     };
 };

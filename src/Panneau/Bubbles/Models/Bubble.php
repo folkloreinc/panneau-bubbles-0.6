@@ -1,6 +1,7 @@
 <?php namespace Panneau\Bubbles\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Baum\Node as Model;
+//use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Folklore\EloquentMediatheque\Traits\AudibleTrait;
 use Folklore\EloquentMediatheque\Traits\FilmableTrait;
@@ -19,6 +20,21 @@ class Bubble extends Model
     use HasFields, HasFieldsSnippet, TaggableTrait, AudibleTrait, FilmableTrait, LinkableTrait, MetadatableTrait, PicturableTrait, WritableTrait;
     
     protected $table = 'bubbles';
+    
+    // 'parent_id' column name
+    protected $parentColumn = 'nesting_parent_id';
+
+    // 'lft' column name
+    protected $leftColumn = 'nesting_left';
+
+    // 'rgt' column name
+    protected $rightColumn = 'nesting_right';
+
+    // 'depth' column name
+    protected $depthColumn = 'nesting_depth';
+
+    // guard attributes from mass-assignment
+    protected $guarded = array('id', 'nesting_parent_id', 'nesting_left', 'nesting_right', 'nesting_depth');
     
     protected $fillable = [
         'type',
