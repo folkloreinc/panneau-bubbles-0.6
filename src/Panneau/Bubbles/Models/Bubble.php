@@ -67,16 +67,25 @@ class Bubble extends Model
         'texts', 'pictures', 'metadatas'
     ];
     
+    protected $bubbleType;
+    
     /**
      * Model fields
      */
     protected function getBubbleType()
     {
+        if($this->bubbleType)
+        {
+            return $this->bubbleType;
+        }
+        
         $bubbleType = app('panneau')->bubbleType($this->type);
-        return $bubbleType->withModel($this);
+        $this->bubbleType = $bubbleType->withModel($this);
+        return $this->bubbleType;
     }
     protected function getFieldsCollection()
     {
+        var_dump('Bubble::getFieldsCollection');
         return $this->getBubbleType()->fields;
     }
     protected function getFieldsSnippet()
