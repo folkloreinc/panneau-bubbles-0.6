@@ -68,6 +68,8 @@ class Bubble extends Model
     ];
     
     protected $bubbleType;
+    protected $fieldsCollection;
+    protected $fieldsSnippet;
     
     /**
      * Model fields
@@ -83,13 +85,22 @@ class Bubble extends Model
         $this->bubbleType = $bubbleType->withModel($this);
         return $this->bubbleType;
     }
+    
     protected function getFieldsCollection()
     {
-        var_dump('Bubble::getFieldsCollection');
-        return $this->getBubbleType()->fields;
+        if(!$this->fieldsCollection)
+        {
+            $this->fieldsCollection = $this->getBubbleType()->getFields();
+        }
+        return $this->fieldsCollection;
     }
+    
     protected function getFieldsSnippet()
     {
-       return $this->getBubbleType()->snippet;
+        if(!$this->fieldsSnippet)
+        {
+            $this->fieldsSnippet = $this->getBubbleType()->getSnippet();
+        }
+        return $this->fieldsSnippet;
     }
 }
