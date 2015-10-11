@@ -103,4 +103,17 @@ class Bubble extends Model
         }
         return $this->fieldsSnippet;
     }
+    
+    /**
+     * Scopes
+     */
+    public function scopeSearch($query, $text)
+    {
+        $query->whereHas('metadatas', function($query) use ($text)
+        {
+            $query->where('metadatas.value' , 'LIKE', '%'.$text.'%');
+        });
+        
+        $query->where('handle' , 'LIKE', '%'.$text.'%');
+    }
 }

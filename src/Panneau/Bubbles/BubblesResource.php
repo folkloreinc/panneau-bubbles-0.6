@@ -6,7 +6,10 @@ class BubblesResource extends EloquentResource
 {
     protected $modelName = '\Panneau\Bubbles\Models\Bubble';
     
-    
+    protected function scopeSearch($query, $value)
+    {
+        $query->search($value);
+    }
     
     protected function saveModel($model, $data)
     {
