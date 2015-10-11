@@ -109,11 +109,12 @@ class Bubble extends Model
      */
     public function scopeSearch($query, $text)
     {
-        $query->whereHas('metadatas', function($query) use ($text)
+        $metadatasTable = config('mediatheque.table_prefix').'metadatas';
+        $query->whereHas('metadatas', function($query) use ($text, $metadatasTable)
         {
-            $query->where('metadatas.value' , 'LIKE', '%'.$text.'%');
+            $query->where($metadatasTable.'.value' , 'LIKE', '%'.$text.'%');
         });
         
-        $query->where('handle' , 'LIKE', '%'.$text.'%');
+        $query->orWhere('handle' , 'LIKE', '%'.$text.'%');
     }
 }
