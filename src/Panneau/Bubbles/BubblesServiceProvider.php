@@ -5,8 +5,13 @@ use Panneau\Support\ServiceProvider;
 
 class BubblesServiceProvider extends ServiceProvider
 {
+    protected $fields = array(
+        'bubble' => \Panneau\Bubbles\Fields\Bubble::class,
+        'bubbles' => \Panneau\Bubbles\Fields\Bubbles::class
+    );
+    
     protected $resources = array(
-        'bubbles' => '\Panneau\Bubbles\BubblesResource'
+        'bubbles' => \Panneau\Bubbles\BubblesResource::class
     );
     
     protected $assets = array(
