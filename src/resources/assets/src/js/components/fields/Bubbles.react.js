@@ -18,6 +18,7 @@ var Bubbles = React.createClass({
     getDefaultProps: function()
     {
         return {
+            ItemField: BubbleField,
             queryUrl: '/panneau/bubbles?search=%QUERY',
             queryWildcard: '%QUERY'
         };
@@ -33,6 +34,7 @@ var Bubbles = React.createClass({
             label = <label htmlFor={name} className="control-label">{this.props.label}</label>;
         }
         
+        var BubbleField = this.props.ItemField;
         
         var className = 'form-group form-group-bubbles';
         
@@ -69,6 +71,8 @@ var Bubbles = React.createClass({
         }, this);
         
         var inputName = this.props.name+'['+index+']';
+        
+        var BubbleField = this.props.ItemField;
         
         return (
             <BubbleField key={key} name={inputName} value={bubble} onChange={onChange} queryUrl={this.props.queryUrl} queryWildcard={this.props.queryWildcard} />
