@@ -10,7 +10,19 @@ var BubbleField = React.createClass({
         return {
             placeholder: 'Rechercher...',
             queryUrl: '/panneau/bubbles?search=%QUERY',
-            queryWildcard: '%QUERY'
+            queryWildcard: '%QUERY',
+            suggestionTemplate: [
+                '<div>',
+                    '<h4><%= _.get(snippet, "title") %></h4>',
+                    '<p class="quiet"><%= _.get(snippet, "link", _.get(snippet, "subtitle")) %></p>',
+                '</div>'
+            ].join('\n'),
+            emptyTemplate: [
+                '<div class="empty-message">',
+                    'Aucun élément trouvé',
+                '</div>'
+            ].join('\n'),
+            getTitleContent: null
         };
     },
     
@@ -32,13 +44,27 @@ var BubbleField = React.createClass({
             inputStyle.display = 'none';
         }
         
-        var title = _.get(this.props, 'value.snippet.title', '');
-        var link = _.get(this.props, 'value.snippet.link', _.get(this.props, 'value.snippet.subtitle'));
-        
         var valueInput = null;
         if(this.props.value)
         {
             valueInput = <input type="hidden" name={this.props.name} value={this.props.value.id} />
+        }
+        
+        var titleContent;
+        if(this.props.getTitleContent)
+        {
+            var value = _.get(this.props, 'value', null);
+            titleContent = this.props.getTitleContent(value, this.props);
+        }
+        else
+        {
+            var title = _.get(this.props, 'value.snippet.title', '');
+            var link = _.get(this.props, 'value.snippet.link', _.get(this.props, 'value.snippet.subtitle'));
+            titleContent = (
+                <div>
+                    <span className="glyphicon glyphicon-file"></span> { title } - <span className="small">{ link }</span>
+                </div>
+            );
         }
         
         return (
@@ -47,7 +73,7 @@ var BubbleField = React.createClass({
                 <div className="form-group-bubble-item" style={itemStyle}>
                     <div className="row">
                         <div className="title col-sm-8">
-                            <span className="glyphicon glyphicon-file"></span> { title } - <span className="small">{ link }</span>
+                            { titleContent }
                         </div>
                         <div className="col-sm-4 text-right">
                             <button type="button" className="btn btn-xs btn-default glyphicon glyphicon-remove" onClick={ this.onClickRemove }></button>
@@ -88,17 +114,8 @@ var BubbleField = React.createClass({
                 return '';
             },
             templates: {
-                empty: [
-                  '<div class="empty-message">',
-                    'Aucun élément trouvé',
-                  '</div>'
-                ].join('\n'),
-                suggestion: _.template([
-                  '<div>',
-                    '<h4><%= _.get(snippet, "title") %></h4>',
-                    '<p class="quiet"><%= _.get(snippet, "link", _.get(snippet, "subtitle")) %></p>',
-                  '</div>'
-                ].join('\n'))
+                empty: this.props.emptyTemplate,
+                suggestion: _.template(this.props.suggestionTemplate)
             }
         });
         
