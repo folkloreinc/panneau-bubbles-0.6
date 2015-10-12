@@ -22,7 +22,7 @@ var BubbleField = React.createClass({
                     'Aucun élément trouvé',
                 '</div>'
             ].join('\n'),
-            getTitleContent: null
+            titleContent: null
         };
     },
     
@@ -51,10 +51,9 @@ var BubbleField = React.createClass({
         }
         
         var titleContent;
-        if(this.props.getTitleContent)
+        if(this.props.titleContent)
         {
-            var value = _.get(this.props, 'value', null);
-            titleContent = this.props.getTitleContent(value, this.props);
+            titleContent = this.props.titleContent;
         }
         else
         {
