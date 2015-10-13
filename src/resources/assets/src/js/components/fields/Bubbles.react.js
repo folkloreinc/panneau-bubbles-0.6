@@ -20,7 +20,8 @@ var Bubbles = React.createClass({
         return {
             ItemField: BubbleField,
             queryUrl: '/panneau/bubbles?search=%QUERY',
-            queryWildcard: '%QUERY'
+            queryWildcard: '%QUERY',
+            addPlaceholder: 'Rechercher pour ajouter...'
         };
     },
     
@@ -45,13 +46,15 @@ var Bubbles = React.createClass({
         }, this);
         var addBubbleName = this.props.name+'['+addIndex+']';
         
+        var addPlaceholder = this.props.addPlaceholder;
+        
         return (
             <div className={className}>
                 { label }
                 <div ref="list" className="list">
                     {bubbles}
                 </div>
-                <BubbleField name={addBubbleName} placeholder="Rechercher pour ajouter..." onChange={onAddChange} queryUrl={this.props.queryUrl} queryWildcard={this.props.queryWildcard} />
+                <BubbleField name={addBubbleName} placeholder={addPlaceholder} onChange={onAddChange} queryUrl={this.props.queryUrl} queryWildcard={this.props.queryWildcard} />
             </div>
         );
     },
