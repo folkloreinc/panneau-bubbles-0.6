@@ -37,7 +37,7 @@ var Bubbles = React.createClass({
         
         var BubbleField = this.props.ItemField;
         
-        var className = 'form-group form-group-bubbles';
+        var className = 'form-group form-group-list form-group-bubbles';
         
         var addIndex = (this.props.value || []).length;
         var onAddChange = _.bind(function(value)

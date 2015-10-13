@@ -1,22 +1,12 @@
 .form-group-bubbles {
     
-    .form-group-bubble {
-        margin-bottom:5px;
-    }
-    
 }
 
 .form-group-bubble {
-    
-}
-
-.form-group-bubble-item {
-    border:solid 1px #ddd;
-    border-radius: 4px;
-    padding:5px;
-    
-    .title {
-        line-height:22px;
-        padding-left:20px;
+    .form-group-item {
+        .col-title {
+            line-height:22px;
+            padding-left:20px;
+        }
     }
 }

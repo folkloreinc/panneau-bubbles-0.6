@@ -69,12 +69,12 @@ var BubbleField = React.createClass({
         return (
             <div className="form-group form-group-bubble">
                 { label }
-                <div className="form-group-bubble-item" style={itemStyle}>
+                <div className="form-group-list-item" style={itemStyle}>
                     <div className="row">
-                        <div className="title col-sm-8">
+                        <div className="col col-title">
                             { titleContent }
                         </div>
-                        <div className="col-sm-4 text-right">
+                        <div className="col col-actions">
                             <button type="button" className="btn btn-xs btn-default glyphicon glyphicon-remove" onClick={ this.onClickRemove }></button>
                         </div>
                     </div>
