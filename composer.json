@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.5.9",
         "illuminate/support": "5.1.*",
-		"panneau/panneau": "~0.1",
+		"panneau/panneau": "0.3.*",
         "rtconner/laravel-tagging": "~1.1",
         "folklore/eloquent-mediatheque": "5.1.*",
 		"baum/baum": "~1.1"
