@@ -10,7 +10,7 @@ use Folklore\EloquentMediatheque\Traits\MetadatableTrait;
 use Folklore\EloquentMediatheque\Traits\PicturableTrait;
 use Folklore\EloquentMediatheque\Traits\WritableTrait;
 
-use Conner\Tagging\TaggableTrait;
+use Conner\Tagging\Taggable as TaggableTrait;
 
 use Panneau\Support\Traits\HasFields;
 use Panneau\Support\Traits\HasFieldsSnippet;
