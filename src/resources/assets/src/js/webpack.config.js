@@ -58,6 +58,7 @@ module.exports = function(config)
             
             externals: {
                 'react': 'React',
+                'react-dom': 'ReactDOM',
                 'immutable': 'Immutable',
                 'jquery': 'jQuery',
                 'gsap': 'TweenMax',

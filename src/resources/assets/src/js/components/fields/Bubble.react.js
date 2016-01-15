@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var $ = require('jquery');
 var _ = require('lodash');
 var Immutable = require('immutable');
@@ -89,7 +90,7 @@ var BubbleField = React.createClass({
     
     componentDidMount: function()
     {
-        var $input = $(React.findDOMNode(this.refs.input));
+        var $input = $(ReactDOM.findDOMNode(this.refs.input));
         
         var bubbles = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -123,7 +124,7 @@ var BubbleField = React.createClass({
     
     componentWillUnmount: function()
     {
-        var $input = $(React.findDOMNode(this.refs.input));
+        var $input = $(ReactDOM.findDOMNode(this.refs.input));
         
         $input.off('typeahead:select');
         $input.typeahead('destroy');
