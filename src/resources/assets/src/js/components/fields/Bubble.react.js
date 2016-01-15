@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var $ = require('jquery');
 var _ = require('lodash');
 var Immutable = require('immutable');
+console.log(ReactDOM);
 
 var BubbleField = React.createClass({
     
@@ -90,6 +91,7 @@ var BubbleField = React.createClass({
     
     componentDidMount: function()
     {
+        console.log(ReactDOM);
         var $input = $(ReactDOM.findDOMNode(this.refs.input));
         
         var bubbles = new Bloodhound({
