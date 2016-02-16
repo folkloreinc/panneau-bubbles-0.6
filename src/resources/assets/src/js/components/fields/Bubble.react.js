@@ -12,6 +12,10 @@ var BubbleField = React.createClass({
             placeholder: 'Rechercher...',
             queryUrl: '/panneau/bubbles?search=%QUERY',
             queryWildcard: '%QUERY',
+            transformResponse: function(response)
+            {
+                return response;
+            },
             suggestionTemplate: [
                 '<div>',
                     '<h4><%= _.get(snippet, "title") %></h4>',
@@ -97,7 +101,8 @@ var BubbleField = React.createClass({
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             remote: {
                 url: this.props.queryUrl,
-                wildcard: this.props.queryWildcard
+                wildcard: this.props.queryWildcard,
+                transform: this.props.transformResponse
             }
         });
         
