@@ -48,13 +48,19 @@ var Bubbles = React.createClass({
         
         var addPlaceholder = this.props.addPlaceholder;
         
+        var props = _.omit(this.props, ['name', 'value', 'addPlaceholder', 'label', 'ItemField', 'onChange']);
+        
         return (
             <div className={className}>
                 { label }
                 <div ref="list" className="list">
                     {bubbles}
                 </div>
-                <BubbleField name={addBubbleName} placeholder={addPlaceholder} onChange={onAddChange} queryUrl={this.props.queryUrl} queryWildcard={this.props.queryWildcard} />
+                <BubbleField
+                    {...props}
+                    name={addBubbleName}
+                    placeholder={addPlaceholder}
+                    onChange={onAddChange} />
             </div>
         );
     },
@@ -77,8 +83,16 @@ var Bubbles = React.createClass({
         
         var BubbleField = this.props.ItemField;
         
+        var props = _.omit(this.props, ['name', 'value', 'addPlaceholder', 'label', 'ItemField', 'onChange']);
+        
         return (
-            <BubbleField key={key} name={inputName} value={bubble} onChange={onChange} queryUrl={this.props.queryUrl} queryWildcard={this.props.queryWildcard} />
+            <BubbleField
+                {...props}
+                key={key}
+                name={inputName}
+                value={bubble}
+                onChange={onChange}
+            />
         );
     },
     
