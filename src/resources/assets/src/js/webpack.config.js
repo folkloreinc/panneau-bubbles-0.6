@@ -25,7 +25,7 @@ module.exports = function(config)
                 publicPath: publicPath,
                 filename: '[name].js',
                 chunkFilename: '[name].chunk.js',
-                jsonpFunction: 'flklrJsonp'
+                jsonpFunction: 'paBuWpckJsonp_'+(new Date()).getTime()
             },
 
             plugins: [
