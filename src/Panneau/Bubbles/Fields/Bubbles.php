@@ -9,4 +9,6 @@ class Bubbles extends Field
     );
     
     protected $hasMany = \Panneau\Bubbles\Fields\Bubble::class;
+    
+    protected $relationShouldBeDeleted = false;
 }
