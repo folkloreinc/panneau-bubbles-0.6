@@ -9,6 +9,7 @@ use Folklore\EloquentMediatheque\Traits\LinkableTrait;
 use Folklore\EloquentMediatheque\Traits\MetadatableTrait;
 use Folklore\EloquentMediatheque\Traits\PicturableTrait;
 use Folklore\EloquentMediatheque\Traits\WritableTrait;
+use Folklore\EloquentMediatheque\Traits\DocumentableTrait;
 
 use Conner\Tagging\Taggable as TaggableTrait;
 
@@ -17,7 +18,7 @@ use Panneau\Support\Traits\HasFieldsSnippet;
 
 class Bubble extends Model
 {
-    use HasFields, HasFieldsSnippet, TaggableTrait, AudibleTrait, FilmableTrait, LinkableTrait, MetadatableTrait, PicturableTrait, WritableTrait;
+    use HasFields, HasFieldsSnippet, TaggableTrait, AudibleTrait, FilmableTrait, LinkableTrait, MetadatableTrait, PicturableTrait, WritableTrait, DocumentableTrait;
     
     protected $table = 'bubbles';
     
