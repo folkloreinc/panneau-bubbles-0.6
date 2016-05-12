@@ -106,16 +106,6 @@ var Bubbles = React.createClass({
         
         var props = _.omit(this.props, ['name', 'value', 'addPlaceholder', 'label', 'ItemField', 'onChange']);
         
-        var bubble = (
-            <BubbleField
-                {...props}
-                key={key}
-                name={inputName}
-                value={bubble}
-                onChange={onChange}
-            />
-        );
-        
         if(this.props.removeButton)
         {
             var onClickRemoveButton = _.bind(function(e)
@@ -124,10 +114,15 @@ var Bubbles = React.createClass({
             }, this);
             
             return (
-                <div className="form-group-bubbles-item">
+                <div className="form-group-bubbles-item" key={key}>
                     <div className="input-group">
                         <div className="input-group-field">
-                            {bubble}
+                            <BubbleField
+                                {...props}
+                                name={inputName}
+                                value={bubble}
+                                onChange={onChange}
+                            />
                         </div>
                         <div className="input-group-btn">
                             <button type="button" className="btn btn-default" onClick={onClickRemoveButton}>
@@ -140,7 +135,15 @@ var Bubbles = React.createClass({
         }
         else
         {
-            return bubble;
+            return (
+                <BubbleField
+                    {...props}
+                    key={key}
+                    name={inputName}
+                    value={bubble}
+                    onChange={onChange}
+                />
+            );
         }
     },
     
