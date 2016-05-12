@@ -4,10 +4,39 @@
         margin-bottom:5px;
     }
     
+    .form-group-add {
+        .well {
+            padding:5px;
+        }
+    }
+    
 }
 
 .form-group-bubble {
     .form-group-list-item {
         margin:0px;
     }
+}
+
+.form-group-bubbles-item {
+    
+    margin-bottom:5px;
+    
+    .input-group .twitter-typeahead:last-child .tt-input {
+        
+        border-radius: 4px 0px 0px 4px!important;
+        
+    }
+    
+    .form-group-bubble {
+        margin-bottom:0px;
+    }
+    
+    .input-group-btn .btn {
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.428571429;
+    }
+    
 }
