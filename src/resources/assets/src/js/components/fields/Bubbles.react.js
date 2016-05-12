@@ -126,7 +126,7 @@ var Bubbles = React.createClass({
                         </div>
                         <div className="input-group-btn">
                             <button type="button" className="btn btn-default" onClick={onClickRemoveButton}>
-                                <span className="glyphicon glyphicon-remove"></span>
+                                <span className="glyphicon glyphicon-trash"></span>
                             </button>
                         </div>
                     </div>
