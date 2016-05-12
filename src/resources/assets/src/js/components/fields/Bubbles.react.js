@@ -21,7 +21,10 @@ var Bubbles = React.createClass({
             ItemField: BubbleField,
             queryUrl: '/panneau/bubbles?search=%QUERY',
             queryWildcard: '%QUERY',
-            addPlaceholder: 'Rechercher pour ajouter...'
+            addPlaceholder: 'Rechercher pour ajouter...',
+            removeButton: false,
+            addButton: false,
+            addButtonLabel: 'Ajouter'
         };
     },
     
@@ -39,16 +42,36 @@ var Bubbles = React.createClass({
         
         var className = 'form-group form-group-list form-group-bubbles';
         
-        var addIndex = (this.props.value || []).length;
-        var onAddChange = _.bind(function(value)
+        var addBubble;
+        if(this.props.addButton)
         {
-            this.onBubbleChange(value,addIndex);
-        }, this);
-        var addBubbleName = this.props.name+'['+addIndex+']';
-        
-        var addPlaceholder = this.props.addPlaceholder;
-        
-        var props = _.omit(this.props, ['name', 'value', 'addPlaceholder', 'label', 'ItemField', 'onChange']);
+            addBubble = (
+                <div className="well">
+                    <button type="button" className="btn btn-primary" onClick={this.onClickAddButton}>
+                        <span className="glyphicon glyphicon-plus"></span> { this.props.addButtonLabel }
+                    </button>
+                </div>
+            );
+        }
+        else
+        {
+            var addIndex = (this.props.value || []).length;
+            var onAddChange = _.bind(function(value)
+            {
+                this.onBubbleChange(value, addIndex);
+            }, this);
+            var addBubbleName = this.props.name+'['+addIndex+']';
+            var addPlaceholder = this.props.addPlaceholder;
+            var props = _.omit(this.props, ['name', 'value', 'addPlaceholder', 'label', 'ItemField', 'onChange']);
+            
+            addBubble = (
+                <BubbleField
+                    {...props}
+                    name={addBubbleName}
+                    placeholder={addPlaceholder}
+                    onChange={onAddChange} />
+            )
+        }
         
         return (
             <div className={className}>
@@ -56,11 +79,9 @@ var Bubbles = React.createClass({
                 <div ref="list" className="list">
                     {bubbles}
                 </div>
-                <BubbleField
-                    {...props}
-                    name={addBubbleName}
-                    placeholder={addPlaceholder}
-                    onChange={onAddChange} />
+                <div className="form-group-add">
+                    { addBubble }
+                </div>
             </div>
         );
     },
@@ -85,7 +106,7 @@ var Bubbles = React.createClass({
         
         var props = _.omit(this.props, ['name', 'value', 'addPlaceholder', 'label', 'ItemField', 'onChange']);
         
-        return (
+        var bubble = (
             <BubbleField
                 {...props}
                 key={key}
@@ -94,6 +115,44 @@ var Bubbles = React.createClass({
                 onChange={onChange}
             />
         );
+        
+        if(this.props.removeButton)
+        {
+            var onClickRemoveButton = _.bind(function(e)
+            {
+                this.onClickRemoveButton(e, index);
+            }, this);
+            
+            return (
+                <div className="form-group-bubbles-item">
+                    <div className="input-group">
+                        <div className="input-group-field">
+                            {bubble}
+                        </div>
+                        <div className="input-group-btn">
+                            <button type="button" className="btn btn-default" onClick={onClickRemoveButton}>
+                                <span className="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+        else
+        {
+            return bubble;
+        }
+    },
+    
+    onClickAddButton: function()
+    {
+        var addIndex = (this.props.value || []).length;
+        this.onBubbleChange({}, addIndex);
+    },
+    
+    onClickRemoveButton: function(e, index)
+    {
+        this.onBubbleChange(null, index);
     },
     
     onBubbleChange: function(value, index)
