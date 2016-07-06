@@ -9,8 +9,7 @@
         "illuminate/support": "5.2.*",
 		"panneau/panneau": "0.5.*",
         "rtconner/laravel-tagging": "~2.0",
-        "folklore/eloquent-mediatheque": "5.2.*",
-		"baum/baum": "~1.1"
+        "folklore/eloquent-mediatheque": "5.2.*"
     },
     "require-dev": {
         "orchestra/testbench": "~3.2"
