@@ -27,7 +27,16 @@ var BubbleField = React.createClass({
                     'Aucun élément trouvé',
                 '</div>'
             ].join('\n'),
-            titleContent: null
+            titleContent: null,
+            identify: function(it)
+            {
+                return it.id;
+            },
+            datumTokenizer: function(it)
+            {
+                return Bloodhound.tokenizers.whitespace(_.get(it, 'snippet.title', it)); 
+            },
+            queryTokenizer: Bloodhound.tokenizers.whitespace
         };
     },
     
@@ -97,8 +106,10 @@ var BubbleField = React.createClass({
         var $input = $(ReactDOM.findDOMNode(this.refs.input));
         
         var bubbles = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.whitespace,
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            datumTokenizer: this.props.datumTokenizer,
+            queryTokenizer: this.props.queryTokenizer,
+            identify: this.props.identify,
+            sufficient: 1,
             remote: {
                 url: this.props.queryUrl,
                 wildcard: this.props.queryWildcard,
@@ -114,6 +125,7 @@ var BubbleField = React.createClass({
         {
             name: 'bubbles',
             source: bubbles,
+            limit: Infinity,
             display: function(suggestion)
             {
                 return '';
