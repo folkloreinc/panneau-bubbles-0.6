@@ -15,9 +15,12 @@ class BubblesServiceProvider extends ServiceProvider
     );
     
     protected $assets = array(
+        'typeahead' => 'https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js',
         'bubbles_css' => 'vendor/panneau-bubbles/css/bubbles.css',
-        'bubbles_js' => 'vendor/panneau-bubbles/js/bubbles.js',
-        'typeahead' => 'https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js'
+        'bubbles_js' => [
+            'src' => 'vendor/panneau-bubbles/js/bubbles.js',
+            'dependencies' => ['panneau', 'typeahead']
+        ]
     );
     
     public function boot()
