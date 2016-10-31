@@ -71,11 +71,24 @@ var BubbleField = React.createClass({
         }
         else
         {
+            var id = _.get(this.props, 'value.id', '');
             var title = _.get(this.props, 'value.snippet.title', '');
             var subtitle = _.get(this.props, 'value.snippet.subtitle');
+            
+            var idContent = (
+                <span>#{id} - </span>
+            );
+            
+            var subtitleContent;
+            if(subtitle && subtitle.length) {
+                subtitleContent = (
+                    <span> - <span className="small">{ subtitle }</span></span>
+                );
+            }
+            
             titleContent = (
                 <div>
-                    <span className="glyphicon glyphicon-file"></span> { title } - <span className="small">{ subtitle }</span>
+                    <span className="glyphicon glyphicon-file"></span>{ idContent }{ title }{ subtitleContent }
                 </div>
             );
         }
