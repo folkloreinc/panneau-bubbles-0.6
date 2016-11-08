@@ -10,4 +10,5 @@ class Bubble extends Field
     
     protected $relation = 'bubbles';
     protected $relationShouldBeDeleted = false;
+    protected $relationShouldBeDetached = true;
 }
