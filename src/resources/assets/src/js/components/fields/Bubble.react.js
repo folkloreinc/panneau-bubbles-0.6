@@ -5,7 +5,7 @@ var _ = require('lodash');
 var Immutable = require('immutable');
 
 var BubbleField = React.createClass({
-    
+
     getDefaultProps: function()
     {
         return {
@@ -34,12 +34,12 @@ var BubbleField = React.createClass({
             },
             datumTokenizer: function(it)
             {
-                return Bloodhound.tokenizers.whitespace(_.get(it, 'snippet.title', it)); 
+                return Bloodhound.tokenizers.whitespace(_.get(it, 'snippet.title', it));
             },
             queryTokenizer: Bloodhound.tokenizers.whitespace
         };
     },
-    
+
     render: function()
     {
         var label;
@@ -47,7 +47,7 @@ var BubbleField = React.createClass({
         {
             label = <label htmlFor={name} className="control-label">{this.props.label}</label>;
         }
-        
+
         var inputStyle = {};
         var itemStyle = {
             display: 'none'
@@ -57,13 +57,13 @@ var BubbleField = React.createClass({
             itemStyle.display = 'block';
             inputStyle.display = 'none';
         }
-        
+
         var valueInput = null;
         if(this.props.value)
         {
             valueInput = <input type="hidden" name={this.props.name} value={this.props.value.id} />
         }
-        
+
         var titleContent;
         if(this.props.titleContent)
         {
@@ -74,25 +74,25 @@ var BubbleField = React.createClass({
             var id = _.get(this.props, 'value.id', '');
             var title = _.get(this.props, 'value.snippet.title', '');
             var subtitle = _.get(this.props, 'value.snippet.subtitle');
-            
+
             var idContent = (
                 <span>#{id} - </span>
             );
-            
+
             var subtitleContent;
             if(subtitle && subtitle.length) {
                 subtitleContent = (
                     <span> - <span className="small">{ subtitle }</span></span>
                 );
             }
-            
+
             titleContent = (
                 <div>
                     <span className="glyphicon glyphicon-file"></span>{ idContent }{ title }{ subtitleContent }
                 </div>
             );
         }
-        
+
         return (
             <div className="form-group form-group-bubble">
                 { label }
@@ -113,11 +113,33 @@ var BubbleField = React.createClass({
             </div>
         );
     },
-    
+
     componentDidMount: function()
     {
+        this.createTypeahead();
+    },
+
+    componentDidUpdate: function(prevProps)
+    {
+        var queryChanged = (
+            prevProps.queryUrl !== this.props.queryUrl ||
+            prevProps.queryWildcard !== this.props.queryWildcard
+        );
+        if (queryChanged) {
+            this.destroyTypeahead();
+            this.createTypeahead();
+        }
+    },
+
+    componentWillUnmount: function()
+    {
+        this.destroyTypeahead();
+    },
+
+    createTypeahead: function()
+    {
         var $input = $(ReactDOM.findDOMNode(this.refs.input));
-        
+
         var bubbles = new Bloodhound({
             datumTokenizer: this.props.datumTokenizer,
             queryTokenizer: this.props.queryTokenizer,
@@ -129,7 +151,7 @@ var BubbleField = React.createClass({
                 transform: this.props.transformResponse
             }
         });
-        
+
         $input.typeahead({
             hint: true,
             highlight: true,
@@ -148,38 +170,38 @@ var BubbleField = React.createClass({
                 suggestion: _.template(this.props.suggestionTemplate)
             }
         });
-        
+
         $input.on('typeahead:select', this.onTypeaheadSelect);
     },
-    
-    componentWillUnmount: function()
+
+    destroyTypeahead: function()
     {
         var $input = $(ReactDOM.findDOMNode(this.refs.input));
-        
+
         $input.off('typeahead:select');
         $input.typeahead('destroy');
     },
-    
+
     onTypeaheadSelect: function(e, suggestion)
     {
         e.preventDefault();
-        
+
         if(this.props.onChange)
         {
             this.props.onChange(suggestion);
         }
     },
-    
+
     onClickRemove: function(e)
     {
         e.preventDefault();
-        
+
         if(this.props.onChange)
         {
             this.props.onChange(null);
         }
     }
-    
+
 });
 
 module.exports = BubbleField;
